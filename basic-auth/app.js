@@ -45,10 +45,12 @@ var indexRouter = require('./routes/index');
 var userSignup = require('./routes/user/signup');
 var userLogin = require('./routes/user/login');
 var userLogout = require('./routes/user/logout');
+var userProfile = require('./routes/user/profile');
 
 app.use('/', indexRouter);
 app.use('/users', userSignup);
 app.use('/users', userLogin);
 app.use('/users', userLogout);
+app.use('/users', userProfile);
 
 module.exports = app;

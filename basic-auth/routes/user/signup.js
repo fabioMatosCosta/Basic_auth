@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const User = require('../models/User');
+const User = require('../../models/User');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
@@ -21,7 +21,7 @@ router.post("/signup", (req, res, next) => {
                         email: email,
                         password: hash,
                         firstName: firstName,
-                        lasName: lastName
+                        lastName: lastName
                     })
                     .then((user)=>{
                         res.status(200).json({

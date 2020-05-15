@@ -47,10 +47,15 @@ var userLogin = require('./routes/user/login');
 var userLogout = require('./routes/user/logout');
 var userProfile = require('./routes/user/profile');
 
+function protect(req,res,next){
+    if(req.session.currentUser) next();
+    else res.status(403).json({message: "User not logged in"});
+}
+
 app.use('/', indexRouter);
 app.use('/users', userSignup);
 app.use('/users', userLogin);
-app.use('/users', userLogout);
-app.use('/users', userProfile);
+app.use('/users', protect, userLogout);
+app.use('/users', protect, userProfile);
 
 module.exports = app;

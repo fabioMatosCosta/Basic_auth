@@ -6,12 +6,11 @@ const bcryptSalt = 10;
 
 router.post("/signup", (req, res, next) => {
     const { email, password ,firstName, lastName } = req.body;
-    User.findOne({ "email": email })
+    User
+    .findOne({ "email": email })
     .then((user) => {
         if (user !== null) {
-            res.json({
-                message: "The email already exists!"
-            })
+            res.status(403).json({message: "The email already exists!"})
         }else {
             bcrypt
             .hash(password, bcryptSalt, function (err, hash) {
@@ -25,7 +24,7 @@ router.post("/signup", (req, res, next) => {
                         lasName: lastName
                     })
                     .then((user)=>{
-                        res.json({
+                        res.status(200).json({
                             message: `Hey, ${user.firstName} ${user.lastName}, you can login now.`
                         })
                     })

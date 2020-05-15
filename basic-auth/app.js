@@ -44,9 +44,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 var indexRouter = require('./routes/index');
 var userSignup = require('./routes/user/signup');
 var userLogin = require('./routes/user/login');
+var userLogout = require('./routes/user/logout');
 
 app.use('/', indexRouter);
 app.use('/users', userSignup);
 app.use('/users', userLogin);
+app.use('/users', userLogout);
 
 module.exports = app;
